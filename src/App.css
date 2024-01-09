@@ -1,0 +1,134 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.orange {
+  color: #F0A202 !important;
+}
+
+.bg-orange {
+  background-color: #F0A202 !important;
+}
+
+.white {
+  color: #FCFCFC !important;
+}
+
+.bg-white {
+  background-color: #FCFCFC !important;
+}
+
+.green {
+  color: #D2F898 !important;
+}
+
+.bg-green {
+  background-color: #D2F898 !important;
+}
+
+.gray {
+  color: #2F2F2F !important;
+}
+
+.bg-gray {
+  background-color: #2F2F2F !important;
+}
+
+.black {
+  color: #000000 !important;
+}
+
+.bg-black {
+  background-color: #000000 !important;
+}
+
+.no-decoration {
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
+.bold {
+  font-weight: bold !important;
+}
+
+.font-48 {
+  font-size: 48px !important;
+}
+
+.font-32 {
+  font-size: 32px !important;
+}
+
+.font-24 {
+  font-size: 24px !important;
+}
+
+.text-shadow {
+  text-shadow: 3px 3px #000000;
+}
+
+.hero {
+  margin-top: 1em;
+  background-image: url('../public/books.jpeg');
+  background-size: cover;
+  height: 40vh;
+  border-radius: 20px;
+  box-shadow: 3px 3px #F0A202;
+}
+
+nav {
+  border-bottom: 4px solid #c68502;
+}
+
+.listing {
+  border-radius: 10px !important;
+  background-color: #f5f5f5;
+  border-bottom: 2px solid #F0A202;
+  cursor: pointer !important;
+}
+
+.listing:hover {
+  background-color: #e8e8e8;
+  border-color: #c68502;
+}
+
+.book-info-panel {
+  border-radius: 10px !important;
+  background-color: #f5f5f5;
+  border-bottom: 2px solid #F0A202;  
+}
+
+.add-to-cart-btn {
+  background-color: #F0A202 !important;
+  color: #fff !important;
+  font-weight: bold !important;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #c68502 !important;
+}
+
+.translate-btn {
+  background-color: #2F2F2F !important;
+  color: white !important;
+  font-size: 10px !important;
+}
+
+.translate-btn:hover {
+  background-color: black !important;
+}
+
+.nav-active {
+  border-bottom: 3px solid white !important;
+}
+
+.dropdown-item:active {
+  background-color: #F0A202 !important;
+}
+
+footer {
+  border-top: 4px solid #c68502;
+  margin-top: auto !important;
+}
