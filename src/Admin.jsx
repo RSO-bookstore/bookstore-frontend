@@ -6,7 +6,7 @@ import { BOOKSTORE_CART_URL, BOOKSTORE_CATALOG_URL } from "./Url";
 export default function Admin() {
 
     const [carts, setCarts] = useState([]);
-    const [books, setBooks] = useState([]);
+    const [orders, setOrders] = useState([]);
     const [newBook, setNewBook] = useState({title: '', author: '', genre: '', description: '', price: 0, stock_quantity: 0});
     const [editBook, setEditBook] = useState({id: 0, title: '', author: '', genre: '', description: '', price: 0, stock_quantity: 0});
 
@@ -37,8 +37,21 @@ export default function Admin() {
         });
     }
 
+    const getOrders = () => {
+        axios({
+            method: 'GET',
+            url: BOOKSTORE_CART_URL+'/orders'
+        }).then(res => {
+            console.log(res);
+            setOrders(res.data);
+        }).catch(err => {
+            alert(err);
+        });
+    }
+
     useEffect(() => {
         getUsersCart();
+        getOrders();
     }, [])
 
     const removeOneBook = (user, bookID) => {
@@ -103,6 +116,18 @@ export default function Admin() {
         }).then(res => {
             alert('Book deleted');
             refetch();
+        }).catch(err => {
+            alert(err);
+        });
+    }
+    
+    const deleteOrder = (orderID) => {
+        axios({
+            method: 'DELETE',
+            url: BOOKSTORE_CART_URL+'/orders/'+orderID
+        }).then(res => {
+            alert('Order deleted');
+            getOrders();
         }).catch(err => {
             alert(err);
         });
@@ -299,6 +324,37 @@ export default function Admin() {
                             <div>
                                 <p className="d-inline">{c.quantity}x</p>
                                 <a className='d-inline btn btn-sm btn-danger ms-2' onClick={() => removeOneBook(c.user_id, c.book.id)}>Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                )
+            })
+            }
+            {/* ORDERS */}
+            <div className="row mt-5">
+                <p className="font-24 bold orange">Orders</p>
+            </div>
+            {orders.length > 0 && orders.map(order => {
+                return (
+                    <div className="row">
+                        <div className="col-12 px-5 mx-2 mt-3 listing pt-3">
+                            <p className="d-inline"><b>#{order.id}</b></p>
+                            <p className="d-inline ms-5">User: <b>{order.user_id}</b></p>
+                            <p className="d-inline ms-5">Total: <b>{order.price} €</b></p>
+                            <div className="mb-1 d-inline float-end">
+                                <a className='d-inline btn btn-sm btn-danger ms-2' onClick={() => deleteOrder(order.id)}>Delete</a>
+                            </div>
+                            <div className="d-block mt-3">
+                                <p className="">Name: <b>{order.name}</b> | Surname: <b>{order.surname}</b> | Post code: <b>{order.post_code}</b> | Address: <b>{order.address}</b> | City: <b>{order.city}</b></p>
+                            </div>
+                            <div className="d-block mt-3">
+                                {order.cart.length > 0 && order.cart.map(cart => {
+                                    return (
+                                        <div>
+                                            <p className="">Title: <b>{cart.book.title}</b> | Author: <b>{cart.book.author}</b> | <b>{cart.quantity}x</b> | <b>{cart.book.price}€ / book</b> | <b>{cart.price}€</b></p>
+                                        </div>
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>
